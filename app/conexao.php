@@ -3,7 +3,7 @@
         private $host = 'localhost';
         private $dbname = 'lista_tarefas';
         private $user = 'root';
-        private $pass = '47717310';
+        private $pass = '';
 
         public function conectar(){
             try {

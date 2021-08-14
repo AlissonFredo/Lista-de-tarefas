@@ -3,14 +3,21 @@
     require_once ('app/tarefa.service.php');
     require_once ('app/conexao.php');
 
+    $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
-    $tarefa = new Tarefa();
-    $tarefa->__set('tarefa', $_POST['tarefa']);
+    if($acao == 'inserir'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('tarefa', $_POST['tarefa']);
 
-    $conexao = new Conexao();
+        $conexao = new Conexao();
 
-    $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService = new TarefaService($conexao, $tarefa);
 
-    $tarefaService->inserir();
+        $tarefaService->inserir();
 
-    header('Location: nova_tarefa.php?inclusao=1');
+        header('Location: nova_tarefa.php?inclusao=1');
+    }
+
+    if($acao == 'recuperar'){
+        echo 'chegamos ate aqui';
+    }
