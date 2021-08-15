@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
     class TarefaService {
 
         private $conexao;
@@ -38,6 +35,9 @@ error_reporting(E_ALL);
         }
 
         public function remover(){
-            
+            $query = 'DELETE FROM tb_tarefas WHERE id = ?';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(1, $this->tarefa->__get('id'));
+            $stmt->execute();
         }
     }
