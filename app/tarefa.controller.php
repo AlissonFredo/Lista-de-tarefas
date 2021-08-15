@@ -46,3 +46,15 @@
 
         header('Location: todas_tarefas.php');
     }
+
+    if($acao == 'marcaRealizada'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']);
+        $tarefa->__set('id_status', 2);
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->marcaRealizada();
+
+        header('Location: todas_tarefas.php');
+    }
