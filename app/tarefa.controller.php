@@ -10,11 +10,8 @@
         $tarefa->__set('tarefa', $_POST['tarefa']);
 
         $conexao = new Conexao();
-
         $tarefaService = new TarefaService($conexao, $tarefa);
-
         $tarefaService->inserir();
-
         header('Location: nova_tarefa.php?inclusao=1');
     }
 
@@ -23,4 +20,16 @@
         $conexao = new Conexao();
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->recuperar();
+    }
+
+    if($acao == 'atualizar'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('tarefa', $_POST['tarefa']);
+        $tarefa->__set('id', $_POST['id']);
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        if($tarefaService->atualizar()){
+        header('Location: todas_tarefas.php');
+        }
     }

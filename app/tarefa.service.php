@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
     class TarefaService {
 
         private $conexao;
@@ -27,7 +30,11 @@
         }
 
         public function atualizar(){
-
+            $query = 'UPDATE tb_tarefas SET tarefa = :tarefa WHERE id = :id';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
+            $stmt->bindValue(':id', $this->tarefa->__get('id'));
+            return $stmt->execute();
         }
 
         public function remover(){
